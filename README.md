@@ -20,7 +20,7 @@ A PyTorch implementation of paper:
 If you use the code in your paper, please cite the paper:
 
 ```
-@inproceedings{tang2018ranking,
+@inproceedings{tang2020revisiting,
   title={Revisiting Adversarially Learned Injection Attacks Against Recommender Systems},
   author={Tang, Jiaxi and Wen, Hongyi and Wang, Ke},
   booktitle={ACM Conference on Recommender Systems},
