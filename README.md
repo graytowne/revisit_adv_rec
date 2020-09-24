@@ -4,6 +4,10 @@ A PyTorch implementation of paper:
 
 *[Revisiting Adversarially Learned Injection Attacks Against Recommender Systems](https://arxiv.org/pdf/2008.04876.pdf), Jiaxi Tang, Hongyi Wen and Ke Wang , RecSys '20*
 
+*TODOs:*
+- [x] Experiment with synthetic dataset
+- [ ] Experiment with real-world dataset
+
 # Requirements
 
 - Python 3.5+
