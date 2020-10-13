@@ -6,7 +6,7 @@ A PyTorch implementation of paper:
 
 *TODOs:*
 - [x] Experiment with synthetic dataset.
-- [ ] Experiment with real-world dataset.
+- [x] Experiment with real-world dataset.
 - [ ] Update README with details for reproducing the results.
 
 # Requirements
