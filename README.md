@@ -37,7 +37,7 @@ Please refer to the following steps to run experiments on real-world dataset (i.
 If you use the code in your paper, please cite the paper:
 
 ```
-@inproceedings{tang2018ranking,
+@inproceedings{tang2020revisit,
   title={Revisiting Adversarially Learned Injection Attacks Against Recommender Systems},
   author={Tang, Jiaxi and Wen, Hongyi and Wang, Ke},
   booktitle={ACM Conference on Recommender Systems},
