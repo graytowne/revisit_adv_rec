@@ -192,7 +192,3 @@ class BlackBoxAdvTrainer:
                                       dtype=np.float64,
                                       shape=(self.n_fakes, self.n_items))
         return fake_data
-
-
-
-
