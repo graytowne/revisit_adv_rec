@@ -122,7 +122,6 @@ class BlackBoxAdvTrainer:
         result = trainer.validate(
             train_data=train_data,
             test_data=test_data,
-            train_epoch=-1,
             target_items=self.target_items)
         return result
 
@@ -193,7 +192,3 @@ class BlackBoxAdvTrainer:
                                       dtype=np.float64,
                                       shape=(self.n_fakes, self.n_items))
         return fake_data
-
-
-
-
