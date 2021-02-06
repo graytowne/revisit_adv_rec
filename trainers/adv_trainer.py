@@ -122,7 +122,6 @@ class BlackBoxAdvTrainer:
         result = trainer.validate(
             train_data=train_data,
             test_data=test_data,
-            train_epoch=-1,
             target_items=self.target_items)
         return result
 
