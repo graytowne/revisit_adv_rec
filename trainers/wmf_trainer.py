@@ -112,7 +112,7 @@ class WMFTrainer(BaseTrainer):
             rhs = torch.mm(Q.t(), Cu.mm(x_u))
 
             new_p_u = torch.mm(lhs.inverse(), rhs)
-            model.P[user] = new_p_u.t()
+            model.P.data[user] = new_p_u.t()
 
         # Update Q
         data = data.transpose()
@@ -131,7 +131,7 @@ class WMFTrainer(BaseTrainer):
             rhs = torch.mm(P.t(), Cv.mm(x_v))
 
             new_q_v = torch.mm(lhs.inverse(), rhs)
-            model.Q[item] = new_q_v.t()
+            model.Q.data[item] = new_q_v.t()
 
         return 0
 

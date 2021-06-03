@@ -42,7 +42,7 @@ class BlackBoxAdvTrainer:
 
     def train_epoch(self, train_data, epoch_num):
         """Train fake data for one epoch to optimize adversarial objective."""
-        def compute_adv_grads():
+        def _compute_adv_grads():
             """Helper function for computing the adversarial gradient."""
             # Reset the surrogate model.
             sur_args = Bunch(self.args.surrogate)
@@ -68,7 +68,7 @@ class BlackBoxAdvTrainer:
             )
             return sur_trainer_, adv_loss_, adv_grads_
 
-        def project_tensor(fake_tensor, threshold=0.5):
+        def _project_tensor(fake_tensor, threshold=0.5):
             """Helper function for projecting fake data to allowable space."""
             return torch.where(fake_tensor > threshold,
                                torch.ones_like(fake_tensor),
@@ -77,7 +77,7 @@ class BlackBoxAdvTrainer:
         sur_trainer = None
         new_fake_tensor = None
         if self.args.attack_type == "random":
-            new_fake_tensor = project_tensor(
+            new_fake_tensor = _project_tensor(
                 fake_tensor=torch.randn_like(self.fake_tensor),
                 threshold=self.args.proj_threshold)
 
@@ -90,7 +90,7 @@ class BlackBoxAdvTrainer:
             set_seed(self.args.seed, cuda=self.args.use_cuda)
             self.optimizer.zero_grad()
 
-            sur_trainer, adv_loss, adv_grads = compute_adv_grads()
+            sur_trainer, adv_loss, adv_grads = _compute_adv_grads()
             if self.args.click_targets:
                 adv_grads[:, self.target_items] = 0.0
             print("Adversarial training [{:.1f} s],  epoch: {}, loss: {:.4f}".format(
@@ -108,7 +108,7 @@ class BlackBoxAdvTrainer:
             self.optimizer.step()
 
             # Project fake tensor.
-            new_fake_tensor = project_tensor(
+            new_fake_tensor = _project_tensor(
                 fake_tensor=self.fake_tensor.data.clone(),
                 threshold=self.args.proj_threshold)
 
