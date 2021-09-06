@@ -6,7 +6,7 @@ from trainers.losses import *
 
 data_path = "./data/gowalla"  # # Dataset path and loader
 use_cuda = False  # If using GPU or CPU
-seed = 1234  # Random seed
+seed = 1  # Random seed
 metrics = [PrecisionRecall(k=[50]), NormalizedDCG(k=[50])]
 
 shared_params = {
@@ -65,8 +65,8 @@ sur_wmf_als = {
     }
 }
 
-""" Attack generation hyper-parameters."""
-attack_gen_args = {
+""" Attack generation hyper-parameters for all methods, tuned with grid-search."""
+attack_gen_args_item_ae_pd = {
     **shared_params,
     "trainer_class": BlackBoxAdvTrainer,
     "attack_type": "adversarial",
@@ -77,7 +77,53 @@ attack_gen_args = {
     # Args for adversarial training.
     "n_fakes": 0.01,
     "adv_epochs": 30,
-    "unroll_steps": 1,
+    "unroll_steps": 0,
+
+    "adv_lr": 1.0,
+    "adv_momentum": 0.95,
+
+    "proj_threshold": 0.05,
+    "click_targets": True,
+
+    # Args for surrogate model.
+    "surrogate": sur_item_ae
+}
+
+attack_gen_args_item_ae = {
+    **shared_params,
+    "trainer_class": BlackBoxAdvTrainer,
+    "attack_type": "adversarial",
+    "n_target_items": 5,
+    "target_item_popularity": "head",
+    "use_fixed_target_item": True,
+
+    # Args for adversarial training.
+    "n_fakes": 0.01,
+    "adv_epochs": 30,
+    "unroll_steps": 5,
+
+    "adv_lr": 1.0,
+    "adv_momentum": 0.95,
+
+    "proj_threshold": 0.1,
+    "click_targets": False,
+
+    # Args for surrogate model.
+    "surrogate": sur_item_ae
+}
+
+attack_gen_args_wmf_sgd = {
+    **shared_params,
+    "trainer_class": BlackBoxAdvTrainer,
+    "attack_type": "adversarial",
+    "n_target_items": 5,
+    "target_item_popularity": "head",
+    "use_fixed_target_item": True,
+
+    # Args for adversarial training.
+    "n_fakes": 0.01,
+    "adv_epochs": 30,
+    "unroll_steps": 10,
 
     "adv_lr": 1.0,
     "adv_momentum": 0.95,
@@ -86,5 +132,32 @@ attack_gen_args = {
     "click_targets": False,
 
     # Args for surrogate model.
-    "surrogate": sur_item_ae
+    "surrogate": sur_wmf_sgd
 }
+
+attack_gen_args_wmf_als = {
+    **shared_params,
+    "trainer_class": BlackBoxAdvTrainer,
+    "attack_type": "adversarial",
+    "n_target_items": 5,
+    "target_item_popularity": "head",
+    "use_fixed_target_item": True,
+
+    # Args for adversarial training.
+    "n_fakes": 0.01,
+    "adv_epochs": 30,
+    "unroll_steps": 0,
+
+    "adv_lr": 1.0,
+    "adv_momentum": 0.95,
+
+    "proj_threshold": 0.1,
+    "click_targets": True,
+
+    # Args for surrogate model.
+    "surrogate": sur_wmf_als
+}
+
+# Using the best attacking method (wmf_sgd). Note this method will requires ~25GB RAM
+# since it needs more unroll steps.
+attack_gen_args = attack_gen_args_wmf_sgd
