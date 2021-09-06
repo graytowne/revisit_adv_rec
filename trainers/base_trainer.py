@@ -178,7 +178,6 @@ class BaseTrainer(object):
         print("Loading best model checkpoint.")
         self.restore(best_checkpoint_path)
         self.evaluate_epoch(train_data, test_data, -1)
-        return
 
     def restore(self, path):
         """Restore model (and optimizer) state from checkpoint."""

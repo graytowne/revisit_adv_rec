@@ -2,6 +2,7 @@ import argparse
 import importlib
 
 from bunch import Bunch
+import numpy as np
 
 from data.data_loader import DataLoader
 from utils.utils import set_seed, stack_csrdata, load_fake_data
@@ -41,6 +42,9 @@ def main(args):
                                 n_items=n_items,
                                 args=victim_args)
         trainer.fit(train_data, test_data)
+        # Load target items and evaluate attack performance.
+        target_items = np.load(attack_eval_args.target_items_path)['target_items']
+        trainer.validate(train_data, test_data, target_items)
 
 
 if __name__ == "__main__":

@@ -1,3 +1,4 @@
+import os
 import random
 
 import numpy as np
@@ -13,7 +14,7 @@ _fixed_target_items = {
 }
 
 
-def sample_target_items(train_data, n_samples, popularity, use_fix=False):
+def sample_target_items(train_data, n_samples, popularity, use_fix=False, output_dir=None):
     """Sample target items with certain popularity."""
     if popularity not in ["head", "upper_torso", "lower_torso", "tail"]:
         raise ValueError("Unknown popularity type {}.".format(popularity))
@@ -45,6 +46,11 @@ def sample_target_items(train_data, n_samples, popularity, use_fix=False):
     sampled_items = valid_items[:n_samples]
     sampled_items.sort()
     print("Sampled target items: {}".format(sampled_items.tolist()))
+    if output_dir is not None:
+        file_name = "sampled_target_items_%s_%s" % (n_samples, popularity)
+        file_path = "%s.npz" % os.path.join(output_dir, file_name)
+        print("Saving fake data to {}".format(file_path))
+        np.savez(file_path, target_items=sampled_items)
 
     return sampled_items
 

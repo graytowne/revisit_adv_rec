@@ -79,16 +79,17 @@ vict_wmf_sgd = {
 }
 vict_user_ae = {
     **shared_params,
-    "epochs": 100,
+    "epochs": 70,
     "lr": 1e-3,
     "l2": 1e-6,
-    "save_feq": 100,
+    "save_feq": 70,
     "batch_size": 1024,
     "valid_batch_size": 512,
     "model": {
         "trainer_class": UserAETrainer,
-        "model_name": "UserAE",
-        "hidden_dims": [256, 128],
+        "model_name": "UserVAE",
+        "model_type": "UserVAE",
+        "hidden_dims": [512, 256],
         "betas": [0.0, 1e-4, 1.0],
         "recon_loss": mult_ce_loss
     }
@@ -115,8 +116,10 @@ attack_eval_args = {
 
     # Path to the fake data.
     # If None, then evaluate clean performance without attack.
-    "fake_data_path": "./outputs/Sur-ItemAE_fake_data_best.npz",
+    "fake_data_path": "./outputs/Sur-WeightedMF-sgd_fake_data_best.npz",
+    # Path to the target items.
+    "target_items_path": "./outputs/sampled_target_items_5_head.npz",
 
     # List of victim models to evaluate.
-    "victims": [vict_itemcf, vict_item_ae]
+    "victims": [vict_itemcf, vict_wmf_sgd, vict_item_ae]
 }
