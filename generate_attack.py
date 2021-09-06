@@ -26,10 +26,11 @@ def main(args):
         train_data,
         n_samples=attack_gen_args.n_target_items,
         popularity=attack_gen_args.target_item_popularity,
-        use_fix=attack_gen_args.use_fixed_target_item
+        use_fix=attack_gen_args.use_fixed_target_item,
+        output_dir=attack_gen_args.output_dir
     )
     attack_gen_args.target_items = target_items
-    # print(adv_trainer_args)
+    print(attack_gen_args)
 
     adv_trainer_class = attack_gen_args.trainer_class
     adv_trainer = adv_trainer_class(n_users=n_users,
