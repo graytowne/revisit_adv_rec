@@ -31,7 +31,11 @@ Please refer to the following steps to run experiments on real-world dataset (i.
      ```shell script
     python evaluate_attack.py
     ```
-
+4. To evaluate each victim model's performance without fake data (i.e., `Without attack` in Figure 5(a)), set `fake_data_path=None` in [evaluate_attack_args.py](https://github.com/graytowne/revisit_adv_rec/blob/master/evaluate_attack_args.py) then run:
+     ```shell script
+    python evaluate_attack.py
+    ```
+    
 # Citation
 
 If you use the code in your paper, please cite the paper:
