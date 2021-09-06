@@ -35,7 +35,12 @@ Please refer to the following steps to run experiments on real-world dataset (i.
      ```shell script
     python evaluate_attack.py
     ```
-    
+
+Below are the logs obtained from using WRMF+SGD method for attack:
+- [gen_attack_wrmf_sgd](https://gist.github.com/graytowne/5d90aeb91d76cf9eb577b712db100d0b)
+- [eval_attack_clean](https://gist.github.com/graytowne/b8a48f9db7d62b20d732ecc4f561817d)
+- [eval_attack_wrmf_sgd](https://gist.github.com/graytowne/5ac869f1c481b99477dcdf5e03448a1f)
+
 # Citation
 
 If you use the code in your paper, please cite the paper:
