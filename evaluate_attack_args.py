@@ -6,7 +6,7 @@ from trainers.losses import *
 
 data_path = "./data/gowalla"  # # Dataset path and loader
 use_cuda = True  # If using GPU or CPU
-seed = 1234  # Random seed
+seed = 1  # Random seed
 metrics = [PrecisionRecall(k=[50]), NormalizedDCG(k=[50])]
 
 shared_params = {
